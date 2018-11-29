@@ -5,10 +5,12 @@ import { throwError } from './ErrorThrower';
 
 
 class S3Client {
-    static async uploadFile(file, config, customName=null) {
+    static async uploadFile(file, config, customName) {
 
         // Error Thrower :x:
         throwError(config, file);
+
+        console.log(`custom name: ${customName}`);
 
         const fd = new FormData();
         const key = `${config.dirName ? config.dirName + "/" : ""}${customName ? customName : file.name}`;
